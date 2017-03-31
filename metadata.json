@@ -1,0 +1,15 @@
+{
+  "name": "naturalis/bioinformatics",
+  "version": "0.1.0",
+  "author": "atze.devries@naturalis.nl",
+  "summary": "Contains many manifets for installing many bioinformatics software",
+  "license": "Apache-2.0",
+  "source": "github.com/naturalis/puppet-bioinformatics",
+  "project_page": "https://github.com/naturalis/puppet-bioinformatics",
+  "issues_url": "https://github.com/naturalis/puppet-bioinformatics/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
