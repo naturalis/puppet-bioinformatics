@@ -21,7 +21,7 @@ class bioinformatics::prinseq(){
   }
 
   exec {'make pinseq executable' :
-    command => '/usr/bin/chmod +x /opt/prinseq-lite-0.20.4/*.pl',
+    command => '/usr/bin/env chmod +x /opt/prinseq-lite-0.20.4/*.pl',
     require => Archive['prinseq-lite-0.20.4.tar.gz']
   }
 
@@ -36,7 +36,7 @@ class bioinformatics::prinseq(){
   }
 
   exec {'install Statistics::PCA' :
-    command => '/usr/bin/cpanm Statistics::PCA'
+    command => '/usr/bin/env cpanm Statistics::PCA'
   }
 
 }

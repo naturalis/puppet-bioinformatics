@@ -19,7 +19,9 @@ class bioinformatics::transabyss(){
                   'libcr0',
                   'python-igraph',
                   'libhwloc5',
-                  'libibverbs1'])
+                  'libibverbs1',
+                  'libopenmpi2',
+                  'abyss'])
 
 
   file {'blat' :
@@ -28,16 +30,16 @@ class bioinformatics::transabyss(){
     mode   => '0775',
   }
 
-  archive { 'libpng-1.2.57.tar.gz' :
-    source       => 'https://sourceforge.net/projects/libpng/files/libpng12/1.2.57/libpng-1.2.57.tar.gz/download',
-    path         => '/tmp/libpng-1.2.57.tar.gz',
+  archive { 'libpng-1.2.59.tar.gz' :
+    source       => 'https://downloads.sourceforge.net/project/libpng/libpng12/1.2.59/libpng-1.2.59.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flibpng%2Ffiles%2Flibpng12%2F1.2.59%2Flibpng-1.2.59.tar.gz%2Fdownload%3Fuse_mirror%3D10gbps-io&ts=1518445937',
+    path         => '/tmp/libpng-1.2.59.tar.gz',
     extract      => true,
     extract_path => '/opt',
     cleanup      => true,
   }
 
-  ::bioinformatics::utils::make {'/opt/libpng-1.2.57' :
-    require => Archive['libpng-1.2.57.tar.gz'],
+  ::bioinformatics::utils::make {'/opt/libpng-1.2.59' :
+    require => Archive['libpng-1.2.59.tar.gz'],
     before  => File['/lib/x86_64-linux-gnu/libpng12.so.0'],
   }
 
@@ -46,26 +48,26 @@ class bioinformatics::transabyss(){
     target => '/usr/local/lib/libpng12.so.0',
   }
 
-  archive {'install openmpi1.6' :
-    path            => '/tmp/libopenmpi1.6_1.6.5-9.1_amd64.deb',
-    source          => 'http://ftp.us.debian.org/debian/pool/main/o/openmpi/libopenmpi1.6_1.6.5-9.1_amd64.deb',
-    extract         => true,
-    extract_flags   => '',
-    extract_path    => '/tmp',
-    extract_command => '/usr/bin/dpkg -i %s',
-    cleanup         => true,
-  }
+#  archive {'install openmpi1.6' :
+#    path            => '/tmp/libopenmpi1.6_1.6.5-9.1+deb8u1_amd64.deb',
+#    source          => 'http://ftp.us.debian.org/debian/pool/main/o/openmpi/libopenmpi1.6_1.6.5-9.1+deb8u1_amd64.deb',
+#    extract         => true,
+#    extract_flags   => '',
+#    extract_path    => '/tmp',
+#    extract_command => '/usr/bin/dpkg -i %s',
+#    cleanup         => true,
+# }
 
 
-  archive {'install abyss 1.5.2' :
-    path            => '/tmp/abyss_1.5.2-1_amd64.deb',
-    source          => 'http://ftp.us.debian.org/debian/pool/non-free/a/abyss/abyss_1.5.2-1_amd64.deb',
-    extract         => true,
-    extract_flags   => '',
-    extract_path    => '/tmp',
-    extract_command => '/usr/bin/dpkg -i %s',
-    cleanup         => true,
-  }
+#  archive {'install abyss 1.5.2' :
+#    path            => '/tmp/abyss_1.5.2-1_amd64.deb',
+#    source          => 'http://ftp.us.debian.org/debian/pool/non-free/a/abyss/abyss_1.5.2-1_amd64.deb',
+#    extract         => true,
+#    extract_flags   => '',
+#    extract_path    => '/tmp',
+#    extract_command => '/usr/bin/dpkg -i %s',
+#    cleanup         => true,
+# }
 
 
   archive { 'install transabyss' :
